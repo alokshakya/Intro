@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //for material module import things which you need
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatCardModule, MatToolbarModule, MatListModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 
@@ -27,7 +27,7 @@ import { McqComponent } from './mcq/mcq.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,
+    MatButtonModule, MatCheckboxModule, MatCardModule, MatToolbarModule, MatListModule,
     FlexLayoutModule
   ],
   providers: [],

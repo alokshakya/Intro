@@ -1,3 +1,28 @@
-<p>
-  header works!
-</p>
+<mat-toolbar color="primary">
+  <span><img src="/assets/images/logo.png" height=30 width=41></span>
+  <a mat-button ><span class="fa fa-home fa-lg"></span> Home</a>
+  <a mat-button ><span class="fa fa-info fa-lg"></span> About</a>
+  <a mat-button ><span class="fa fa-list fa-lg"></span> Menu</a>
+  <a mat-button ><span class="fa fa-address-card fa-lg"></span> Contact</a>
+</mat-toolbar>
+
+
+<div class="container jumbotron"
+    fxLayout="row"
+    fxLayout.sm="column" 
+    fxLayout.xs="column" 
+    fxLayoutAlign.xs="start center"
+    fxLayoutAlign.sm="start center" 
+    fxLayoutAlign.gt-sm="center center" 
+    fxLayoutGap="10px">
+
+  <div fxFlex fxFlex.gt-sm="50%">
+    <h1>IntroQuest</h1>
+    <p>One stop solution to all your career related problems.
+       Whether it be company interview or Email Writing Simulation or C Coding Simulator for command line arguments. Leave your worries to us. Prepare from us!</p>
+  </div>
+  <div fxFlex fxFlex.gt-sm="20%">
+    <img src="/assets/images/logo.png" alt="Logo">
+  </div>
+  <div fxFlex></div>
+</div>
