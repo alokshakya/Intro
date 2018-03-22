@@ -10,6 +10,7 @@ import {MatButtonModule,
         MatListModule,
         MatIconModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { RoutingModule } from './routing/routing.module';
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule,
     FlexLayoutModule,
+    AngularFontAwesomeModule,
     RoutingModule
   ],
   providers: [],
