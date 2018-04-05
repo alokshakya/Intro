@@ -8,6 +8,7 @@ import {MatButtonModule,
         MatCardModule, 
         MatToolbarModule,
         MatListModule,
+        MatGridListModule,
         MatIconModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -22,6 +23,8 @@ import { McqComponent } from './mcq/mcq.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { RoutingModule } from './routing/routing.module';
+import { ProcessHttpMsgService } from './services/process-http-msg.service';
+import { FetchQuestionsService } from './services/fetch-questions.service';
 
 @NgModule({
   declarations: [
@@ -35,12 +38,13 @@ import { RoutingModule } from './routing/routing.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule,
+    MatButtonModule, MatCheckboxModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule, MatGridListModule,
     FlexLayoutModule,
     AngularFontAwesomeModule,
     RoutingModule
   ],
-  providers: [],
+  providers: [ProcessHttpMsgService,
+              FetchQuestionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
