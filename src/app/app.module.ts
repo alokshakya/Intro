@@ -30,6 +30,7 @@ import { ProcessHttpMsgService } from './services/process-http-msg.service';
 import { FetchQuestionsService } from './services/fetch-questions.service';
 import { FormsModule } from '@angular/forms';
 import { SyntaxHighlighterDirective } from './directives/syntax-highlighter.directive';
+import { CodingComponent } from './coding/coding.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SyntaxHighlighterDirective } from './directives/syntax-highlighter.dire
     HomeComponent,
     AboutComponent,
     McqComponent,
-    SyntaxHighlighterDirective
+    SyntaxHighlighterDirective,
+    CodingComponent
   ],
   imports: [
     BrowserModule,
