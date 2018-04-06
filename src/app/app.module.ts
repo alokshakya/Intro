@@ -9,7 +9,9 @@ import {MatButtonModule,
         MatToolbarModule,
         MatListModule,
         MatGridListModule,
-        MatIconModule} from '@angular/material';
+        MatIconModule,
+        MatSpinner,
+        MatProgressSpinnerModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import 'hammerjs';
@@ -23,8 +25,11 @@ import { McqComponent } from './mcq/mcq.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { RoutingModule } from './routing/routing.module';
+import { HttpModule } from '@angular/http';
 import { ProcessHttpMsgService } from './services/process-http-msg.service';
 import { FetchQuestionsService } from './services/fetch-questions.service';
+import { FormsModule } from '@angular/forms';
+import { SyntaxHighlighterDirective } from './directives/syntax-highlighter.directive';
 
 @NgModule({
   declarations: [
@@ -33,15 +38,18 @@ import { FetchQuestionsService } from './services/fetch-questions.service';
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    McqComponent
+    McqComponent,
+    SyntaxHighlighterDirective
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule, MatGridListModule,
+    MatButtonModule, MatCheckboxModule,MatProgressSpinnerModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule, MatGridListModule,
     FlexLayoutModule,
     AngularFontAwesomeModule,
-    RoutingModule
+    RoutingModule,
+    HttpModule,
+    FormsModule
   ],
   providers: [ProcessHttpMsgService,
               FetchQuestionsService],

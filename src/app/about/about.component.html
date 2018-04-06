@@ -1,3 +1,180 @@
-<p>
-  about works!
-</p>
+
+<h3>HTML</h3>
+<textarea alokShakyaSyntaxHighlighter [options]="{}" [lang]="'html'" >
+  &lt;textarea highlight-js [options]="{}" [lang]="'typescript'">
+  /* tslint:disable */
+  import { Component } from '@angular/core';
+  
+  @Component({
+      selector: 'demo',
+      templateUrl: './demo.component.html',
+      styleUrls: ['./demo.component.scss']
+  })
+  export class DemoComponent {
+      switchStatus: boolean = true;
+  }
+  &lt;/textarea>
+                  </textarea>
+
+
+
+<h3>typescript</h3>
+<textarea alokShakyaSyntaxHighlighter [options]="{}" [lang]="'tyscript'" >
+   import { Directive, Component, ElementRef, Input, OnInit, OnDestroy  } from '@angular/core';
+
+  declare const hljs: any;
+  declare const document: any;
+  
+  @Directive({
+    selector: '[appSyntaxHighlighter]',
+    host: {
+      'style': 'display:none;'
+    }
+  })
+  export class SyntaxHighlighterDirective implements OnInit, OnDestroy {
+    @Input() options: any;
+    @Input() lang: string;
+  
+    protected codeEl: any;
+    protected parentEl: any;
+  
+    constructor(private elementRef: ElementRef) { }
+  
+      ngOnInit() {
+          this.codeEl = document.createElement('pre');
+          if (this.lang) {
+              this.codeEl.className = this.lang;
+          }
+          this.codeEl.innerHTML = '' + this.elementRef.nativeElement.innerHTML.trim();
+          this.parentEl = this.elementRef.nativeElement.parentNode;
+          this.parentEl.insertBefore(this.codeEl, this.elementRef.nativeElement.nextSibling);
+  
+          hljs.configure(Object.assign({ }, this.options));
+          hljs.highlightBlock(this.codeEl);
+      }
+      
+      ngOnDestroy(): void {
+          if (this.codeEl) {
+              this.parentEl.removeChild(this.codeEl);
+              this.codeEl = null;
+          }
+      }
+  
+  }
+  
+</textarea>
+<h3>C++</h3>
+<textarea alokShakyaSyntaxHighlighter [options]="{}" [lang]="'C++'">
+  #include <iostream>
+
+  int main(int argc, char *argv[]) {
+  
+    /* An annoying "Hello World" example */
+    for (auto i = 0; i < 0xFFFF; i++)
+      cout << "Hello, World!" << endl;
+  
+    char c = '\n';
+    unordered_map <string, vector<string> > m;
+    m["key"] = "\\\\"; // this is an error
+  
+    return -2e3 + 12l;
+  }
+</textarea>
+<h3>Java</h3>
+<textarea alokShakyaSyntaxHighlighter [options]="{}" [lang]="'Java'">
+    /**
+    * @author John Smith <john.smith@example.com>
+   */
+   package l2f.gameserver.model;
+   
+   public abstract class L2Char extends L2Object {
+     public static final Short ERROR = 0x0001;
+   
+     public void moveTo(int x, int y, int z) {
+       _ai = null;
+       log("Should not be called");
+       if (1 > 5) { // wtf!?
+         return;
+       }
+     }
+   }
+
+</textarea>
+<h3>JavaScript</h3>
+<textarea alokShakyaSyntaxHighlighter [options]="{}" [lang]="JavaScript">
+    function $initHighlight(block, cls) {
+      try {
+        if (cls.search(/\bno\-highlight\b/) != -1)
+          return process(block, true, 0x0F) +
+                 ` class="${cls}"`;
+      } catch (e) {
+        /* handle exception */
+      }
+      for (var i = 0 / 2; i < classes.length; i++) {
+        if (checkCondition(classes[i]) === undefined)
+          console.log('undefined');
+      }
+    }
+    
+    export  $initHighlight;
+</textarea>
+<h3>JSON</h3>
+<textarea alokShakyaSyntaxHighlighter [options]="{}" [lang]="'JSON'">
+    [
+    {
+      "title": "apples",
+      "count": [12000, 20000],
+      "description": {"text": "...", "sensitive": false}
+    },
+    {
+      "title": "oranges",
+      "count": [17500, null],
+      "description": {"text": "...", "sensitive": false}
+    }
+  ]
+</textarea>
+<h3>Markdown</h3>
+<textarea alokShakyaSyntaxHighlighter [options]="{}" [lang]="'Markdown'">
+    # hello world
+
+    you can write text [with links](http://example.com) inline or [link references][1].
+    
+    * one _thing_ has *em*phasis
+    * two __things__ are **bold**
+    
+    [1]: http://example.com
+    
+    ---
+    
+    hello world
+    ===========
+    
+    <this_is inline="xml"></this_is>
+    
+    > markdown is so cool
+    
+        so are code segments
+    
+    1. one thing (yeah!)
+    2. two thing `i can write code`, and `more` wipee!
+    
+</textarea>
+<h3>Python</h3>
+<textarea alokShakyaSyntaxHighlighter [options]="{}" [lang]="'Python'">
+    @requires_authorization
+    def somefunc(param1='', param2=0):
+        r'''A docstring'''
+        if param1 > param2: # interesting
+            print 'Gre\'ater'
+        return (param2 - param1 + 1 + 0b10l) or None
+    
+    class SomeClass:
+        pass
+    
+    >>> message = '''interpreter
+    ... prompt'''
+</textarea>
+
+
+ 
+

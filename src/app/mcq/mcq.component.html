@@ -1,64 +1,43 @@
-<div fxLayout="row" 
-      fxLayout.lt-sm="column"
-      fxLayout.sm="column"
-      fxLayoutGap="10px" 
-      fxLayoutGap.lt-sm="5px"
-      fxLayoutGap.sm="8px" 
-      fxFlex>
-  <div fxFlex="75" fxFlex.lt-sm="50" fxFlex.sm="50" fxFlexOrder.lt-sm="2" fxFlexOrder.sm="2" 
-       style="border:5px solid red;" class="container">
-      <mat-card >
-          <mat-card-header>
-            
-            <mat-card-title><h2>Q 1: What is the complexity of merge sort algorithm ?</h2></mat-card-title>
-            
-          </mat-card-header>
-          
-          <mat-card-content>
-            
-                <form>
-                    <input type="radio" name="gender" value="male" > (A) log(n)<br>
-                    <input type="radio" name="gender" value="female"> (B) n^2*log(n)<br>
-                    <input type="radio" name="gender" value="other"> (C) log(2n) <br>
-                    <input type="radio" name="gender" value="other"> (D) log(n) <br>
-                  </form>
-            
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>Mark For Review</button>
-            <button mat-button>Answer & Mark For Review</button>
-            <button mat-button>Clear Response</button>
-            <button mat-button>Save & Next</button>
-          </mat-card-actions>
-        </mat-card>
 
-        
-  </div>
-  <div fxFlex="25" fxFlex.lt-sm="50" fxFlex.sm="50" fxFlexOrder.lt-sm="1" fxFlexOrder.sm="1" 
-  style="border:2px solid blue;">
-      <mat-grid-list cols="4" rowHeight="100px">
-          <mat-grid-tile
-              *ngFor="let tile of tiles"
-              [colspan]="tile.cols"
-              [rowspan]="tile.rows"
-              [style.background]="tile.color">
-            {{tile.text}}
-          </mat-grid-tile>
-          <mat-grid-tile
-              *ngFor="let tile of tiles"
-              [colspan]="tile.cols"
-              [rowspan]="tile.rows"
-              [style.background]="tile.color">
-            {{tile.text}}
-          </mat-grid-tile>
-          <mat-grid-tile
-              *ngFor="let tile of tiles"
-              [colspan]="tile.cols"
-              [rowspan]="tile.rows"
-              [style.background]="tile.color">
-            {{tile.text}}
-          </mat-grid-tile>
-        </mat-grid-list>
-    </div>
 
+<div *ngIf="questions && !showAnswer">
+<mat-card *ngFor="let question of questions">
+  <mat-card-header>
+    
+    <mat-card-title><h2>Q {{question.id}}: {{question.question}}</h2></mat-card-title>
+    
+  </mat-card-header>
+  
+  <mat-card-content>
+    
+        <form>
+            <input type="radio" name="gender" [(ngModel)]="question.marked" value="{{question.a}}" > (A) {{question.a}}<br>
+            <input type="radio" name="gender" [(ngModel)]="question.marked" value="{{question.b}}"> (B) {{question.b}})<br>
+            <input type="radio" name="gender" [(ngModel)]="question.marked" value="{{question.c}}"> (C) {{question.c}} <br>
+            <input type="radio" name="gender" [(ngModel)]="question.marked" value="{{question.d}}"> (D) {{question.d}} <br>
+          </form>
+    
+  </mat-card-content>
+  
+    {{question.marked}} <br>
+  
+</mat-card>
+
+<button type="submit" md-button class="background-primary text-floral-white" (click)="showAnswerFun()">Submit</button>
+</div>
+
+<div [hidden]="questions || errMess" >
+  <mat-spinner><h4>Loading . . . Please Wait</h4></mat-spinner>
+</div>
+<div *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
+</div>
+<div *ngIf="showAnswer">
+  <mat-list>
+    <mat-list-item *ngFor="let q of questions">
+      <h4>Q {{q.id}} Marked : {{q.marked}} And Answer is: {{q.answer}}</h4><br>
+
+    </mat-list-item>
+  </mat-list>
 </div>

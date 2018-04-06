@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-
+  
+  
   constructor() { }
 
   ngOnInit() {
+    
   }
+  //switchStatus: boolean = true;
 
 }
