@@ -31,7 +31,8 @@ import { FetchQuestionsService } from './services/fetch-questions.service';
 import { FormsModule } from '@angular/forms';
 import { SyntaxHighlighterDirective } from './directives/syntax-highlighter.directive';
 import { CodingComponent } from './coding/coding.component';
-
+import 'codemirror';
+import { CodemirrorModule } from 'ng2-codemirror';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { CodingComponent } from './coding/coding.component';
     AngularFontAwesomeModule,
     RoutingModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    CodemirrorModule
   ],
   providers: [ProcessHttpMsgService,
               FetchQuestionsService],
