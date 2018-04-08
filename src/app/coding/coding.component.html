@@ -1,8 +1,25 @@
-<article>
+
+
     <h2>Theme Demo</h2>
-    <form><textarea id="code" name="code" #code [(ngModel)]="editorCode">
-    </textarea>
-    <a mat-button (click)="submitCode()"><span class="fa fa-sign-in fa-lg"></span> Submit</a>
+    <div fxFlexLayout> 
+    <form>
+      <p>Select Theme : &nbsp;&nbsp;
+          <mat-form-field>
+              <mat-select [(value)]="theme" (change)="changeTheme()">
+                <mat-option *ngFor="let th of themes" [value]="th">{{th}}</mat-option>
+              </mat-select>
+          </mat-form-field> 
+          &nbsp;&nbsp;&nbsp;&nbsp; Select Language &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field>
+              <mat-select [(value)]="language" (change)="changeLanguage()">
+                <mat-option *ngFor="let lg of languages" [value]="lg">{{lg}}</mat-option>
+              </mat-select>
+          </mat-form-field> 
+      </p>
+        
+      <textarea id="code" name="code" #code [(ngModel)]="editorCode">
+      </textarea>
+    <a mat-button (click)="submitCode()"> Submit</a>
   </form>
-    
+</div>   
   

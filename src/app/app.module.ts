@@ -11,7 +11,8 @@ import {MatButtonModule,
         MatGridListModule,
         MatIconModule,
         MatSpinner,
-        MatProgressSpinnerModule} from '@angular/material';
+        MatProgressSpinnerModule,
+        MatSelectModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import 'hammerjs';
@@ -32,7 +33,7 @@ import { FormsModule } from '@angular/forms';
 import { SyntaxHighlighterDirective } from './directives/syntax-highlighter.directive';
 import { CodingComponent } from './coding/coding.component';
 import 'codemirror';
-import { CodemirrorModule } from 'ng2-codemirror';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,13 +48,15 @@ import { CodemirrorModule } from 'ng2-codemirror';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,MatProgressSpinnerModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule, MatGridListModule,
+    MatButtonModule, MatCheckboxModule,
+    MatProgressSpinnerModule, MatCardModule,
+    MatToolbarModule, MatListModule, 
+    MatIconModule, MatGridListModule,MatSelectModule,
     FlexLayoutModule,
     AngularFontAwesomeModule,
     RoutingModule,
     HttpModule,
-    FormsModule,
-    CodemirrorModule
+    FormsModule
   ],
   providers: [ProcessHttpMsgService,
               FetchQuestionsService],
