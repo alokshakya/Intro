@@ -12,7 +12,7 @@
           &nbsp;&nbsp;&nbsp;&nbsp; Select Language &nbsp;&nbsp;&nbsp;&nbsp;
           <mat-form-field>
               <mat-select [(value)]="language" (change)="changeLanguage()">
-                <mat-option *ngFor="let lg of languages" [value]="lg">{{lg}}</mat-option>
+                <mat-option *ngFor="let lg of languages" [value]="lg">{{lg.name}}</mat-option>
               </mat-select>
           </mat-form-field> 
       </p>
