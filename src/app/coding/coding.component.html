@@ -1,5 +1,7 @@
 
-
+  <p>{{problem.problem}}</p>
+  <p>{{problem.sampleInput}}</p>
+  <p>{{problem.sampleOutput}}</p>
     <h2>Theme Demo</h2>
     <div fxFlexLayout> 
     <form>
@@ -19,7 +21,7 @@
         
       <textarea id="code" name="code" #code [(ngModel)]="editorCode">
       </textarea>
-    <a mat-button (click)="submitCode()"> Submit</a>
+    <a mat-button (click)="submitCode()"> Run & Test </a>
   </form>
 </div>   
   

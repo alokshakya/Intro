@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
 import { SyntaxHighlighterDirective } from './directives/syntax-highlighter.directive';
 import { CodingComponent } from './coding/coding.component';
 import 'codemirror';
+import { RuncodeService } from './services/runcode.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import 'codemirror';
     FormsModule
   ],
   providers: [ProcessHttpMsgService,
-              FetchQuestionsService],
+            FetchQuestionsService,
+            RuncodeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

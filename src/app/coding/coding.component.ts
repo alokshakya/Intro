@@ -5,6 +5,8 @@ import { THEMES } from '../shared/themes';
 import { LANGUAGES } from '../shared/languages';
 import { Lang } from '../shared/lang';
 import { LangTemplates } from '../shared/langTemps';
+import { RuncodeService} from '../services/runcode.service';
+import { PROBLEMS } from '../shared/problems';
 //import codemirror javascript files
 //modes
 import 'codemirror/mode/clike/clike';
@@ -32,26 +34,32 @@ import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/hint/show-hint';
 import 'codemirror/addon/hint/javascript-hint';
 import 'codemirror/addon/hint/anyword-hint';
+import { PROBLEM } from '../shared/problem';
 @Component({
   selector: 'app-coding',
   templateUrl: './coding.component.html',
   styleUrls: ['./coding.component.scss']
 })
 export class CodingComponent implements OnInit, AfterViewInit {
- 
+  problems:PROBLEM[];
+  problem:PROBLEM;
   themes:string[];
   languages:Lang[];
   language:Lang;
   theme:string;
   @ViewChild('code') code: ElementRef;
   editorCode:string;
-  constructor() { }
+  constructor(
+    private runCodeService:RuncodeService
+  ) { }
   editor:any;
   ngOnInit() {
     this.themes=THEMES;
     this.theme='dracula';
     this.languages=LangTemplates;
     this.language=LangTemplates[0];
+    this.problems=PROBLEMS;
+    this.problem=PROBLEMS[0];
    
   }
   ngAfterViewInit() {
@@ -72,9 +80,17 @@ export class CodingComponent implements OnInit, AfterViewInit {
     this.editor.setOption('mode',this.language.mode);
     this.editor.setValue(this.language.template);            
   }
-
+  res:any;
+  errMess:string;
   submitCode(){
-    console.log('Submit Code Pressed '+this.editor.getValue());
+    console.log('Submit Code Pressed \n'+this.editor.getValue());
+    this.runCodeService.runTest(this.editor.getValue(),
+      this.language.filename,this.language.name,
+      '3','6'
+      )
+      .subscribe( res => this.res=res,
+              errmess => this.errMess=errmess
+              );
   }
   changeTheme(){
     this.editor.setOption('theme',this.theme);
