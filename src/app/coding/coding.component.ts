@@ -96,7 +96,6 @@ export class CodingComponent implements OnInit, AfterViewInit {
     this.editor.setOption('theme',this.theme);
   }
   changeLanguage(){
-    this.editor.setOption('theme',this.theme);
     this.editor.setOption('mode',this.language.mode);
     this.editor.setValue(this.language.template);
   }

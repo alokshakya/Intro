@@ -31,7 +31,9 @@
         "../node_modules/codemirror/theme/monokai.css",
         "../node_modules/codemirror/theme/neo.css",
         "../node_modules/codemirror/theme/twilight.css",
-        "../node_modules/codemirror/addon/hint/show-hint.css"
+        "../node_modules/codemirror/addon/hint/show-hint.css",
+        "../node_modules/prismjs/themes/prism.css",
+        "../node_modules/prismjs/themes/prism-okaidia.css"
       ],
       "scripts": [
         

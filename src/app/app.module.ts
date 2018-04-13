@@ -34,6 +34,9 @@ import { SyntaxHighlighterDirective } from './directives/syntax-highlighter.dire
 import { CodingComponent } from './coding/coding.component';
 import 'codemirror';
 import { RuncodeService } from './services/runcode.service';
+import { MarkdownService } from './services/markdown.service';
+import { MarkdownComponent } from './markdown/markdown.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import { RuncodeService } from './services/runcode.service';
     AboutComponent,
     McqComponent,
     SyntaxHighlighterDirective,
-    CodingComponent
+    CodingComponent,
+    MarkdownComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,8 @@ import { RuncodeService } from './services/runcode.service';
   ],
   providers: [ProcessHttpMsgService,
             FetchQuestionsService,
-            RuncodeService],
+            RuncodeService,
+            MarkdownService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,10 @@
+
+  <h1>Enter Text to see Preview</h1>
+  <textarea [(ngModel)]="markCode"></textarea>
+  <br>
+  <hr>
+  <h3>Preview of text</h3>{{markdownContent}}<hr>
+
+  <h2>Below Code Again</h2>
+  <app-markdown [data]='markdownContent'></app-markdown>
+
