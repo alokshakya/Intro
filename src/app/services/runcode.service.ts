@@ -22,29 +22,30 @@ export class RuncodeService {
       this.glotToken = '92debc0b-994a-4004-98f6-4895ba453c84';
     }
   runTest(code:string, filename:string, language:string,input:string,output:string):Observable<PROBLEM[]>{
-    let body=JSON.stringify(
+    let body=
         {
           "language":language,
           "stdin":input,
-          "output":output,
           "files": [
             {
-              "name": "main.py",
-               "content": "print(42)"
+              "name": filename,
+               "content": code
               }
             ]
-          }
-    );
-
+          };
+          console.log(body);
 
       let glotheaders = new Headers();
-      glotheaders.append('Authorization', 'Token 92debc0b-994a-4004-98f6-4895ba453c84e');
+      //glotheaders.append('Authorization', 'Token 92debc0b-994a-4004-98f6-4895ba453c84e');
       glotheaders.append('Content-type', 'application/json');  
       let glotopts = new RequestOptions();
       glotopts.headers = glotheaders;
       let url='https://run.glot.io/languages/'+language+'/latest';
-      let url2='/checkTest/v1';
-    return this.http.post(url2,body)
+      let url2='https://api.enlightenment56.hasura-app.io/sampleTest';
+      let url3='http://localhost:8080/sampleTest';
+      let url4='https://api.enlightenment56.hasura-app.io/test2';
+      let url5='https://api.enlightenment56.hasura-app.io/test3';
+    return this.http.post(url5,body,glotopts)
             .map(res =>{ return this.processHttpMsgService.extractData(res);})
             .catch(error => { return this.processHttpMsgService.handleError(error);});          
   

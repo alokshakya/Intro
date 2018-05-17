@@ -37,6 +37,7 @@ import { RuncodeService } from './services/runcode.service';
 import { MarkdownService } from './services/markdown.service';
 import { MarkdownComponent } from './markdown/markdown.component';
 import { AdminComponent } from './admin/admin.component';
+import { MarkPreviewComponent } from './mark-preview/mark-preview.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AdminComponent } from './admin/admin.component';
     SyntaxHighlighterDirective,
     CodingComponent,
     MarkdownComponent,
-    AdminComponent
+    AdminComponent,
+    MarkPreviewComponent
   ],
   imports: [
     BrowserModule,

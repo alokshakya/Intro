@@ -1,9 +1,0 @@
-{
-    "/languages/*":{
-        "target":"https://run.glot.io/languages",
-        "secure":true,
-        "logLevel":"debug",
-        "changeOrigin": true
-
-    }
-}
