@@ -12,7 +12,8 @@ import {MatButtonModule,
         MatIconModule,
         MatSpinner,
         MatProgressSpinnerModule,
-        MatSelectModule} from '@angular/material';
+        MatSelectModule,
+        MatTabsModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import 'hammerjs';
@@ -59,7 +60,7 @@ import { MarkPreviewComponent } from './mark-preview/mark-preview.component';
     MatButtonModule, MatCheckboxModule,
     MatProgressSpinnerModule, MatCardModule,
     MatToolbarModule, MatListModule, 
-    MatIconModule, MatGridListModule,MatSelectModule,
+    MatIconModule, MatGridListModule,MatSelectModule,MatTabsModule,
     FlexLayoutModule,
     AngularFontAwesomeModule,
     RoutingModule,
