@@ -20,6 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
+        
         "../node_modules/font-awesome/scss/font-awesome.scss",
         "../node_modules/codemirror/lib/codemirror.css",
         
@@ -36,7 +37,7 @@
         "../node_modules/prismjs/themes/prism-okaidia.css"
       ],
       "scripts": [
-        
+       
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

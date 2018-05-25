@@ -19,19 +19,16 @@ export class RuncodeService {
   glotToken:string;
   constructor(private http: Http,
     private processHttpMsgService: ProcessHttpMsgService) { 
-      this.glotToken = '92debc0b-994a-4004-98f6-4895ba453c84';
+    this.glotToken = '92debc0b-994a-4004-98f6-4895ba453c84';
     }
   runTest(code:string, filename:string, language:string,input:string,output:string):Observable<PROBLEM[]>{
     let body=
         {
           "language":language,
           "stdin":input,
-          "files": [
-            {
-              "name": filename,
-               "content": code
-              }
-            ]
+          "name":filename,
+          "content":code
+          
           };
           console.log(body);
 
@@ -45,7 +42,9 @@ export class RuncodeService {
       let url3='http://localhost:8080/sampleTest';
       let url4='https://api.enlightenment56.hasura-app.io/test2';
       let url5='https://api.enlightenment56.hasura-app.io/test3';
-    return this.http.post(url5,body,glotopts)
+      let url6='https://api.enlightenment56.hasura-app.io/test4';
+      let url7='https://api.enlightenment56.hasura-app.io/test5';
+    return this.http.post(url7,body,glotopts)
             .map(res =>{ return this.processHttpMsgService.extractData(res);})
             .catch(error => { return this.processHttpMsgService.handleError(error);});          
   

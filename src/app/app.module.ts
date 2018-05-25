@@ -13,7 +13,11 @@ import {MatButtonModule,
         MatSpinner,
         MatProgressSpinnerModule,
         MatSelectModule,
-        MatTabsModule} from '@angular/material';
+        MatTabsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatMenuModule
+        } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import 'hammerjs';
@@ -30,15 +34,18 @@ import { RoutingModule } from './routing/routing.module';
 import { HttpModule } from '@angular/http';
 import { ProcessHttpMsgService } from './services/process-http-msg.service';
 import { FetchQuestionsService } from './services/fetch-questions.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SyntaxHighlighterDirective } from './directives/syntax-highlighter.directive';
 import { CodingComponent } from './coding/coding.component';
 import 'codemirror';
 import { RuncodeService } from './services/runcode.service';
+import { AuthService } from './services/auth.service';
+import { DataService } from './services/data.service';
 import { MarkdownService } from './services/markdown.service';
 import { MarkdownComponent } from './markdown/markdown.component';
 import { AdminComponent } from './admin/admin.component';
 import { MarkPreviewComponent } from './mark-preview/mark-preview.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +59,8 @@ import { MarkPreviewComponent } from './mark-preview/mark-preview.component';
     CodingComponent,
     MarkdownComponent,
     AdminComponent,
-    MarkPreviewComponent
+    MarkPreviewComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -65,12 +73,19 @@ import { MarkPreviewComponent } from './mark-preview/mark-preview.component';
     AngularFontAwesomeModule,
     RoutingModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [ProcessHttpMsgService,
             FetchQuestionsService,
             RuncodeService,
-            MarkdownService],
+            MarkdownService,
+            AuthService,
+            DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

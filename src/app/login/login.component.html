@@ -1,0 +1,107 @@
+
+<div fxFlexLayout>
+  <div fxFlexOffset="30%" fxFlexOffset.xl="40%"
+  fxFlexOffset.lg="35%"
+  fxFlexOffset.md="30%"
+  fxFlexOffset.sm="20%"
+  fxFlexOffset.xs="10%"  fxFlexAlign="center" fxFlex="40%" 
+  fxFlex.xl="20%"
+  fxFlex.lg="30%"
+  fxFlex.md="40%"
+  fxFlex.sm="60%"
+  fxFlex.xs="80%">
+      
+        <mat-tab-group>
+          <mat-tab label="Login">
+              <h3>Login to Continue...</h3>
+              <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <p>
+                    <mat-form-field class="full-width"
+                    dividerColor="{{(formErrors.username) ? 'warn' : 'primary'}}">
+                      <input matInput formControlName="username" placeholder="username" type="text" required>
+                      <mat-hint>
+                        <span [hidden]="!(formErrors.username)">
+                          {{formErrors.username}}</span>
+                      </mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="full-width"
+                     dividerColor="{{(formErrors.password) ? 'warn' : 'primary'}}">
+                      <input matInput formControlName="password" placeholder="password" type="password" required>
+                      <mat-hint>
+                        <span [hidden]="!(formErrors.password)">
+                          {{formErrors.password}}</span>
+                      </mat-hint>
+                    </mat-form-field>
+                    
+                  </p>
+                  <button type="submit" mat-raised-button style="background-color:navy; color: aliceblue;" [disabled]="loginForm.invalid">Login</button>
+              </form>
+        
+              <div [hidden]="!submitting">
+                  <mat-spinner></mat-spinner><h4>Submitting . . . Please Wait</h4>
+              </div>
+                
+              <div *ngIf="errMess">
+                <h2>Error</h2>
+                <h4>{{errMess}}</h4>
+              </div>
+        
+              <div *ngIf="loginResponse">
+                  <h2>Welcome</h2>
+                  <h4>{{loginResponse.username}}</h4>
+                </div>
+          </mat-tab>
+          <mat-tab label="Sign Up">
+              <h3>Sign Up to Continue...</h3>
+              <form novalidate [formGroup]="signupForm" (ngSubmit)="onSubmitSignUpForm()">
+                  <p>
+                    <mat-form-field class="full-width"
+                    dividerColor="{{(signupformErrors.username) ? 'warn' : 'primary'}}">
+                      <input matInput formControlName="username" placeholder="Username" type="text" required>
+                      <mat-hint>
+                        <span [hidden]="!(signupformErrors.username)">
+                          {{signupformErrors.username}}</span>
+                      </mat-hint>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="full-width"
+                     dividerColor="{{(signupformErrors.password) ? 'warn' : 'primary'}}">
+                      <input matInput formControlName="password" placeholder="Password" type="password" required>
+                      <mat-hint>
+                        <span [hidden]="!(signupformErrors.password)" >
+                          {{signupformErrors.password}}</span>
+                      </mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="full-width"
+                     dividerColor="{{(signupformErrors.confirmPassword) ? 'warn' : 'primary'}}">
+                      <input matInput formControlName="confirmPassword" placeholder="Confirm Password" type="password" required>
+                      <mat-hint>
+                        <span [hidden]="!(signupformErrors.confirmPassword)" >
+                          {{signupformErrors.confirmPassword}}</span>
+                      </mat-hint>
+                    </mat-form-field>
+                    
+                  </p>
+                  <button type="submit" mat-raised-button style="background-color:navy; color: aliceblue;" [disabled]="signupForm.invalid">Sign Up</button>
+              </form>
+        
+              <div [hidden]="!signupsubmitting">
+                  <mat-spinner></mat-spinner><h4>Submitting . . . Please Wait</h4>
+              </div>
+                
+              <div *ngIf="errMess">
+                <h2>Error</h2>
+                <h4>{{errMess}}</h4>
+              </div>
+        
+              <div *ngIf="loginResponse">
+                  <h2>Welcome</h2>
+                  <h4>{{loginResponse.username}}</h4>
+                </div>
+          </mat-tab>
+      </mat-tab-group>  
+      
+  </div>
+
+</div>
+  
