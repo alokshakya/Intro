@@ -16,7 +16,8 @@ import {MatButtonModule,
         MatTabsModule,
         MatInputModule,
         MatFormFieldModule,
-        MatMenuModule
+        MatMenuModule,
+        MatRadioModule
         } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -43,9 +44,11 @@ import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
 import { MarkdownService } from './services/markdown.service';
 import { MarkdownComponent } from './markdown/markdown.component';
-import { AdminComponent } from './admin/admin.component';
+
 import { MarkPreviewComponent } from './mark-preview/mark-preview.component';
 import { LoginComponent } from './login/login.component';
+import { CodingQuestionsComponent } from './coding-questions/coding-questions.component';
+import { McqtestComponent } from './mcqtest/mcqtest.component';
 
 @NgModule({
   declarations: [
@@ -58,9 +61,10 @@ import { LoginComponent } from './login/login.component';
     SyntaxHighlighterDirective,
     CodingComponent,
     MarkdownComponent,
-    AdminComponent,
     MarkPreviewComponent,
-    LoginComponent
+    LoginComponent,
+    CodingQuestionsComponent,
+    McqtestComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,9 @@ import { LoginComponent } from './login/login.component';
     MatInputModule,
     MatFormFieldModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatRadioModule,
+    MatSelectModule
   ],
   providers: [ProcessHttpMsgService,
             FetchQuestionsService,

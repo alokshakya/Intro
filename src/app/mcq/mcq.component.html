@@ -1,43 +1,23 @@
-
-
-<div *ngIf="questions && !showAnswer">
-<mat-card *ngFor="let question of questions">
-  <mat-card-header>
-    
-    <mat-card-title><h2>Q {{question.id}}: {{question.question}}</h2></mat-card-title>
-    
-  </mat-card-header>
-  
-  <mat-card-content>
-    
-        <form>
-            <input type="radio" name="gender" [(ngModel)]="question.marked" value="{{question.a}}" > (A) {{question.a}}<br>
-            <input type="radio" name="gender" [(ngModel)]="question.marked" value="{{question.b}}"> (B) {{question.b}})<br>
-            <input type="radio" name="gender" [(ngModel)]="question.marked" value="{{question.c}}"> (C) {{question.c}} <br>
-            <input type="radio" name="gender" [(ngModel)]="question.marked" value="{{question.d}}"> (D) {{question.d}} <br>
-          </form>
-    
-  </mat-card-content>
-  
-    {{question.marked}} <br>
-  
-</mat-card>
-
-<button type="submit" md-button class="background-primary text-floral-white" (click)="showAnswerFun()">Submit</button>
-</div>
-
+ 
 <div [hidden]="questions || errMess" >
-  <mat-spinner><h4>Loading . . . Please Wait</h4></mat-spinner>
-</div>
-<div *ngIf="errMess">
-  <h2>Error</h2>
-  <h4>{{errMess}}</h4>
-</div>
-<div *ngIf="showAnswer">
-  <mat-list>
-    <mat-list-item *ngFor="let q of questions">
-      <h4>Q {{q.id}} Marked : {{q.marked}} And Answer is: {{q.answer}}</h4><br>
+    <mat-spinner><h4>Loading . . . Please Wait</h4></mat-spinner>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+<div *ngFor="let mcq_ques of questions">
+    <div class="mcqQuestion">        
+    <app-markdown [data]='mcq_ques.description'></app-markdown><br>
+    <mat-radio-group>
+        <mat-radio-button value="mcq_ques.optionA">{{mcq_ques.optionA}}</mat-radio-button><br><br>
+        <mat-radio-button value="mcq_ques.optionB">{{mcq_ques.optionB}}</mat-radio-button><br><br>
+        <mat-radio-button value="mcq_ques.optionC">{{mcq_ques.optionC}}</mat-radio-button><br><br>
+        <mat-radio-button value="mcq_ques.optionD">{{mcq_ques.optionD}}</mat-radio-button><br><br>
+    </mat-radio-group><br>
+    <h4 style="color: green;">Answer : {{mcq_ques.answer}}</h4>
+  </div>
+  
 
-    </mat-list-item>
-  </mat-list>
+
 </div>

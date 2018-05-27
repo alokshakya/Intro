@@ -1,0 +1,32 @@
+<div fxFlexLayout>
+  <div fxFlexOffset.xl="20%"
+  fxFlexOffset.lg="15%"
+  fxFlexOffset.md="10%"
+  fxFlexOffset.sm="5%"
+  fxFlexOffset.xs="0%"  fxFlexAlign="center" 
+  fxFlex.xl="70%"
+  fxFlex.lg="80%"
+  fxFlex.md="85%"
+  fxFlex.sm="90%"
+  fxFlex.xs="100%">
+  <div [hidden]="tests || errMess" >
+      <mat-spinner><h4>Loading Tests . . . Please Wait</h4></mat-spinner>
+  </div>
+  <div *ngIf="errMess">
+      <h2>Error</h2>
+      <h4>{{errMess}}</h4>
+  </div>
+  <mat-list *ngIf="tests"> 
+    <mat-list-item *ngFor="let Test of tests" [routerLink]="['/mcq', Test.id]" >
+      <div class="mcqtest">
+       <p mat-line>Title : {{ Test.title }}</p>
+       <p mat-line>Category : {{ Test.category }}</p>
+       <p mat-line>Number of Questions : {{ Test.noOfQuestions }}</p>
+       <p mat-line>Time Allowed : {{ Test.time }}</p> 
+       <p mat-line>Created : {{ Test.created | date }}</p> 
+      </div>
+    </mat-list-item>
+  </mat-list>
+  
+  </div>
+</div>

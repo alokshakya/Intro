@@ -9,7 +9,7 @@ import { dataURL } from '../shared/urls';
 import { HttpHeaders } from '@angular/common/http';
 import { glotURL } from '../shared/urls';
 import { ProcessHttpMsgService } from './process-http-msg.service';
-
+import { RunResult } from '../shared/runresult';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
@@ -21,7 +21,7 @@ export class RuncodeService {
     private processHttpMsgService: ProcessHttpMsgService) { 
     this.glotToken = '92debc0b-994a-4004-98f6-4895ba453c84';
     }
-  runTest(code:string, filename:string, language:string,input:string,output:string):Observable<PROBLEM[]>{
+  runTest(code:string, filename:string, language:string,input:string,output:string):Observable<RunResult>{
     let body=
         {
           "language":language,
@@ -33,7 +33,6 @@ export class RuncodeService {
           console.log(body);
 
       let glotheaders = new Headers();
-      //glotheaders.append('Authorization', 'Token 92debc0b-994a-4004-98f6-4895ba453c84e');
       glotheaders.append('Content-type', 'application/json');  
       let glotopts = new RequestOptions();
       glotopts.headers = glotheaders;
@@ -49,30 +48,7 @@ export class RuncodeService {
             .catch(error => { return this.processHttpMsgService.handleError(error);});          
   
   
-   /* Checked for CORS on hasura api worked on hasura but not working on run.glot.io
-        let hadata=JSON.stringify(
-          {
-            "type": "select",
-            "args": {
-                "table": "Questions",
-                "columns": [
-                    "*"
-                ]
-            }
-        }
-        );
-
-      let Hsheaders = new Headers();
-      Hsheaders.append('Authorization', 'Bearer 0b253fa1dfe1d4a9078aa68a6869b99ef2298c5f9f5bbd2f');
-      Hsheaders.append('Content-Type', 'application/json');  
-      let Hsopts = new RequestOptions();
-      Hsopts.headers = Hsheaders;
-
-      return this.http.post('https://data.enlightenment56.hasura-app.io/v1/query',hadata,Hsopts)
-            .map(res =>{ return this.processHttpMsgService.extractData(res);})
-            .catch(error => { return this.processHttpMsgService.handleError(error);}); 
-
-        */  
+   
       }
 
 }

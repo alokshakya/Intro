@@ -1,0 +1,25 @@
+<div fxFlexLayout>
+    <div fxFlexOffset.xl="20%"
+    fxFlexOffset.lg="15%"
+    fxFlexOffset.md="10%"
+    fxFlexOffset.sm="5%"
+    fxFlexOffset.xs="0%"  fxFlexAlign="center" 
+    fxFlex.xl="70%"
+    fxFlex.lg="80%"
+    fxFlex.md="85%"
+    fxFlex.sm="90%"
+    fxFlex.xs="100%">
+    <div [hidden]="codingQuestions || errMess" >
+        <mat-spinner><h4>Loading Questions . . . Please Wait</h4></mat-spinner>
+    </div>
+    <div *ngIf="errMess">
+        <h2>Error</h2>
+        <h4>{{errMess}}</h4>
+    </div>
+    <mat-list *ngIf="codingQuestions"> 
+      <mat-list-item *ngFor="let question of codingQuestions" [routerLink]="['/coding', question.id]">
+         <a  >{{ question.title }}</a>     
+      </mat-list-item>
+    </mat-list>
+    </div>
+  </div>

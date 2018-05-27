@@ -1,12 +1,20 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges, ViewEncapsulation } from '@angular/core';
 import * as CodeMirror from 'codemirror';
+
+import { MarkdownService } from '../services/markdown.service';
+import * as extras from 'marked-extras';
+
+import { Params, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { THEMES } from '../shared/themes';
 import { LANGUAGES } from '../shared/languages';
 import { Lang } from '../shared/lang';
 import { LangTemplates } from '../shared/langTemps';
 import { RuncodeService} from '../services/runcode.service';
+import { DataService} from '../services/data.service';
 import { PROBLEMS } from '../shared/problems';
+import { CodingQuestion } from '../shared/codingQuestion';
 //import codemirror javascript files
 //modes
 import 'codemirror/mode/clike/clike';
@@ -37,6 +45,7 @@ import 'codemirror/addon/hint/anyword-hint';
 import { PROBLEM } from '../shared/problem';
 @Component({
   selector: 'app-coding',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './coding.component.html',
   styleUrls: ['./coding.component.scss']
 })
@@ -47,11 +56,32 @@ export class CodingComponent implements OnInit, AfterViewInit {
   languages:Lang[];
   language:Lang;
   theme:string;
+  codingQuestion: CodingQuestion;
+  codingQuestions: CodingQuestion[];
+  errMess:string;
+  compilationError:string;
+  runError:string;
+  output:string;
+  sampleTestcasePass:boolean=false;
   @ViewChild('code') code: ElementRef;
   editorCode:string;
+
   constructor(
-    private runCodeService:RuncodeService
-  ) { }
+    private runCodeService:RuncodeService,
+    private data: DataService,
+    private _markdown: MarkdownService,
+    private route: ActivatedRoute,
+    private location: Location) {
+      let id = +this.route.snapshot.params['id'];
+      console.log("id from params "+ id);
+      this.data.fetchCodingQuestion(id)
+      .subscribe(res => { 
+        //do extra actions on received data
+        this.codingQuestion=res[0];
+        console.log(res);
+       },
+        errmess => {this.errMess = <any>errmess; });
+     }
   editor:any;
   ngOnInit() {
     this.themes=THEMES;
@@ -60,6 +90,35 @@ export class CodingComponent implements OnInit, AfterViewInit {
     this.language=LangTemplates[0];
     this.problems=PROBLEMS;
     this.problem=PROBLEMS[0];
+    extras.init();
+    this._markdown.setMarkedOptions({});
+    console.log(extras.markedDefaults);
+    this._markdown.setMarkedOptions(Object.assign(extras.markedDefaults, {
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false
+    }));
+    this._markdown.renderer.table = (header: string, body: string) => {
+      return `
+      <table class="table2">
+        <thead>
+          ${header}
+        </thead>
+        <tbody>
+          ${body}
+        </tbody>
+      </table>
+      `;
+    }
+    this._markdown.renderer.blockquote = (quote: string) => {
+      return `<blockquote class="king-quote">${quote}</blockquote>`;
+    }
+
+
    
   }
   ngAfterViewInit() {
@@ -81,16 +140,36 @@ export class CodingComponent implements OnInit, AfterViewInit {
     this.editor.setValue(this.language.template);            
   }
   res:any;
-  errMess:string;
+  
   submitCode(){
     console.log('Submit Code Pressed \n'+this.editor.getValue());
     this.runCodeService.runTest(this.editor.getValue(),
       this.language.filename,this.language.name,
-      '3','6'
+      this.codingQuestion.sampleInput,this.codingQuestion.samplOutput
       )
-      .subscribe( res => this.res=res,
-              errmess => this.errMess=errmess
-              );
+      .subscribe( res => {this.res=res;
+        if(res.stderr)
+        {
+          this.compilationError=res.stderr;
+        }
+        else if(res.error){
+          this.runError=res.error;
+        }
+        else if(res.stdout){
+          //check for sample output pass
+          //('inside stdout and output' +res.stdout);
+          //this.output=this.res.stdout;
+          if(this.codingQuestion.samplOutput===res.stdout)
+          {
+            this.output=this.res.stdout;
+            this.sampleTestcasePass=true;
+          }
+        }
+        console.log(res);
+      }
+      ,
+      errmess => this.errMess=errmess
+      );
   }
   changeTheme(){
     this.editor.setOption('theme',this.theme);
@@ -99,10 +178,15 @@ export class CodingComponent implements OnInit, AfterViewInit {
     this.editor.setOption('mode',this.language.mode);
     this.editor.setValue(this.language.template);
   }
+
   
-  
-  
+  goBack(): void {
+    this.location.back();
   }
+  
+  
+  
+}
   
  
 

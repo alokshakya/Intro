@@ -1,10 +1,18 @@
+
 <div style="padding: 2%; margin: 0.5%;">
 
-  <p>{{problem.problem}}</p>
-  <p>Sample Input : {{problem.sampleInput}}</p>
-  <p>Sample Output : {{problem.sampleOutput}}</p>
 
-    <h2>Theme Demo</h2>
+    <div [hidden]="codingQuestion || errMess" >
+        <mat-spinner><h4>Loading Questions . . . Please Wait</h4></mat-spinner>
+    </div>
+    <div *ngIf="errMess">
+        <h2>Error</h2>
+        <h4>{{errMess}}</h4>
+    </div>
+    
+    <a mat-raised-button style="background-color: darkblue; color: cornsilk" (click)="goBack()"> Back </a>
+    <app-markdown *ngIf="codingQuestion" [data]='codingQuestion.description'></app-markdown>
+
     <div fxFlexLayout> 
     <form>
       <p>Select Theme : &nbsp;&nbsp;
@@ -26,6 +34,22 @@
     <a mat-raised-button style="background-color: darkblue; color: cornsilk" (click)="submitCode()"> Run & Test </a>
     <a mat-raised-button style="background-color: darkblue; color: cornsilk" (click)="submitCode()"> Submit </a>
   </form>
+  <div *ngIf="compilationError">
+    <h3>compilationError</h3><br>
+    {{res.stderr}}
+  </div>
+  <div *ngIf="runError">
+      <h3>Run Time Error</h3><br>
+      {{res.error}}
+    </div>
+    
+    <div *ngIf="output">
+        <h3>Sample Test Case Passed</h3><br>
+         Sample Input : {{codingQuestion.sampleInput}}<br>
+         Your Output : {{output}}<br>
+      </div>
 </div>  
 </div> 
+<hr>
+
   
